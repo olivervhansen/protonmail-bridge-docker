@@ -12,11 +12,12 @@ COPY gpgparams install.sh entrypoint.sh VERSION /protonmail/
 # Install dependencies and protonmail bridge
 RUN bash install.sh
 
-# Add a user 'protonmail' with UID 8535
-RUN useradd -u 8535 -d /home/protonmail protonmail \
-    && mkdir -p /home/protonmail \
-    && chown protonmail: /home/protonmail
+# Add a user 'protonmail' with UID 1000
+RUN useradd --user-group --uid 1000 --home-dir /home/protonmail --create-home --no-log-init protonmail \
+    # && mkdir -p /home/protonmail \
+    && chown -R 1000:1000 /home/protonmail
 # change to non-privileged user for extra security
 USER protonmail
+WORKDIR /home/protonmail
 
 ENTRYPOINT ["bash", "/protonmail/entrypoint.sh"]

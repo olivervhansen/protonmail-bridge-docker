@@ -6,6 +6,12 @@ set -ex
 cd
 echo "Running as user '$USER' (UID '$UID') in '$PWD'"
 
+# debug
+whoami
+ls -al /home/protonmail
+chown 1000:1000 .
+ls -al /home/protonmail
+
 # Initialize
 if [[ $1 == init ]]; then
 
