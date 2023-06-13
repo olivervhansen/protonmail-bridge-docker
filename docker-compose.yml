@@ -10,10 +10,10 @@ services:
     #  dockerfile: Dockerfile
     container_name: pm_bridge
     ports:
-      - 192.168.101.103:1025:25/tcp
-      - 192.168.101.103:1143:143/tcp
+      - 192.168.101.103:25:25/tcp
+      # - 192.168.101.103:1143:143/tcp
     restart: unless-stopped
     stdin_open: true 
     tty: true
     volumes:
-    - ${APPSDIR}/pm_bridge:/home/protonmail
+    - ${APPSDIR}/pm_bridge:/root
